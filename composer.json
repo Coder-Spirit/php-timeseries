@@ -1,0 +1,16 @@
+{
+    "name": "litipk/php-timeseries",
+    "description": "A Time Series library, ideal to make predictions about temporal data.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andreu Correa Casablanca",
+            "email": "castarco@litipk.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^5.0"
+    }
+}
