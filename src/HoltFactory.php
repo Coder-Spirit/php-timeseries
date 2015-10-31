@@ -57,8 +57,8 @@ class HoltFactory extends PredictorFactory
                 $candidateError = 0.0;
 
                 for ($k=1; $k<$dataSetSize; $k++) {
-                    $candidateError += pow($candidate->predict()-$dataPoints[$i], 2);
-                    $candidate->ingestDataPoint($dataPoints[$i]);
+                    $candidateError += pow($candidate->predict()-$dataPoints[$k], 2);
+                    $candidate->ingestDataPoint($dataPoints[$k]);
                 }
 
                 if ($candidateError < $minError) {

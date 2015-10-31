@@ -29,8 +29,8 @@ abstract class PredictorFactory
      * @param array $dataPoints
      * @return TimeSeriesPredictor
      */
-    public static function trainPredictorWithArray(array $dataPoints)
+    public static function trainPredictor(array $dataPoints)
     {
-        return static::getDefaultInstance()->trainPredictorWithArray($dataPoints);
+        return static::getDefaultInstance()->train($dataPoints);
     }
 }
