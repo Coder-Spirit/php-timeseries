@@ -1,7 +1,10 @@
 <?php
 
 
-namespace Litipk\TimeSeries;
+namespace Litipk\TimeSeries\Predictors;
+
+
+use Litipk\TimeSeries\TimeSeriesException;
 
 
 /**

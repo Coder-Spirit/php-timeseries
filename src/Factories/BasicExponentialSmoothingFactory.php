@@ -1,7 +1,11 @@
 <?php
 
 
-namespace Litipk\TimeSeries;
+namespace Litipk\TimeSeries\Factories;
+
+
+use Litipk\TimeSeries\Predictors\TimeSeriesPredictor;
+use Litipk\TimeSeries\TimeSeriesException;
 
 
 /**
@@ -31,7 +35,7 @@ abstract class BasicExponentialSmoothingFactory extends PredictorFactory
 
     /**
      * @param array $dataPoints
-     * @return HoltPredictor
+     * @return TimeSeriesPredictor
      */
     public function train(array $dataPoints)
     {

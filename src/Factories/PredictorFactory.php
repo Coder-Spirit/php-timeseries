@@ -1,7 +1,10 @@
 <?php
 
 
-namespace Litipk\TimeSeries;
+namespace Litipk\TimeSeries\Factories;
+
+
+use Litipk\TimeSeries\Predictors\TimeSeriesPredictor;
 
 
 /**
