@@ -4,16 +4,15 @@
 namespace Litipk\TimeSeries\Factories;
 
 
+use Litipk\TimeSeries\Predictors\DampedMultiplicativeTrendPredictor;
 use Litipk\TimeSeries\TimeSeriesException;
-use Litipk\TimeSeries\Predictors\TimeSeriesPredictor;
-use Litipk\TimeSeries\Predictors\DampedHoltPredictor;
 
 
 /**
  * Class HoltFactory
  * @package Litipk\TimeSeries
  */
-class DampedHoltFactory extends PredictorFactory
+class DampedMultiplicativeTrendFactory extends PredictorFactory
 {
     /** @var  HoltFactory */
     private static $defaultInstance = null;
@@ -32,7 +31,7 @@ class DampedHoltFactory extends PredictorFactory
     {
         $this->nStepsPerParam = (int)max(2, $nStepsPerParam);
         $this->predictionHorizon = is_infinite($predictionHorizon) ?
-            +INF : (int)ceil(max(2, $predictionHorizon));
+            +INF: (int)ceil(max(2, $predictionHorizon));
     }
 
     /**
@@ -48,7 +47,7 @@ class DampedHoltFactory extends PredictorFactory
 
     /**
      * @param array $dataPoints
-     * @return DampedHoltFactory
+     * @return DampedMultiplicativeTrendPredictor
      */
     public function train(array $dataPoints)
     {
@@ -68,7 +67,7 @@ class DampedHoltFactory extends PredictorFactory
         for ($i=0; $i<$nStepsPerParam; $i++) {
             for ($j=0; $j<$nStepsPerParam; $j++) {
                 for ($k=1; $k<$nStepsPerParam; $k+=2) {
-                    $candidate = new DampedHoltPredictor($i*$stepSize, $j*$stepSize, $k*$stepSize, $firstLevel);
+                    $candidate = new DampedMultiplicativeTrendPredictor($i*$stepSize, $j*$stepSize, $k*$stepSize, $firstLevel);
                     $candidateError = 0.0;
 
                     for ($u=1; $u<$dataSetSize; $u++) {

@@ -22,15 +22,7 @@ abstract class BasicExponentialSmoothingFactory extends PredictorFactory
      */
     protected function __construct($nStepsPerParam)
     {
-        if (!is_integer($nStepsPerParam)) {
-            throw new TimeSeriesException('The $nStepsPerParam parameter must be an integer number');
-        }
-
-        if ($nStepsPerParam < 1) {
-            throw new TimeSeriesException('The $nStepsPerParam parameter must be positive');
-        }
-
-        $this->nStepsPerParam = (int)$nStepsPerParam;
+        $this->nStepsPerParam = (int)max(2, $nStepsPerParam);
     }
 
     /**
