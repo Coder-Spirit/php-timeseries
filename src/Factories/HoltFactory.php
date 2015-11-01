@@ -4,7 +4,6 @@
 namespace Litipk\TimeSeries\Factories;
 
 
-use Litipk\TimeSeries\Predictors\TimeSeriesPredictor;
 use Litipk\TimeSeries\Predictors\HoltPredictor;
 
 
@@ -40,7 +39,7 @@ class HoltFactory extends BasicExponentialSmoothingFactory
      * @param double $alpha
      * @param double $beta
      * @param double $level
-     * @return TimeSeriesPredictor
+     * @return HoltPredictor
      */
     protected function getPredictor($alpha, $beta, $level)
     {

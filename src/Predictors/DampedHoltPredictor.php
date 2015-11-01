@@ -37,23 +37,12 @@ class DampedHoltPredictor implements TimeSeriesPredictor
      */
     public function __construct($alpha, $beta, $theta, $level, $trend = 0.0)
     {
-        if (
-            !is_numeric($alpha) || !is_numeric($beta) || !is_numeric($theta) ||
-            !is_numeric($level) || !is_numeric($trend)
-        ) {
-            throw new TimeSeriesException('Invalid parameter types');
-        }
-
-        if ($alpha < 0.0  || $alpha > 1.0 || $beta < 0.0 || $beta > 1.0) {
-            throw new TimeSeriesException('Alpha and Beta must be in the [0, 1] interval');
-        }
-
         if ($theta <= 0.0 || $theta > 1.0) {
             throw new TimeSeriesException('Theta must be in the (0, 1] interval');
         }
 
-        $this->alpha = (double)$alpha;
-        $this->beta = (double)$beta;
+        $this->alpha = (double)min(max(0.0, $alpha), 1.0);
+        $this->beta = (double)min(max(0.0, $beta), 1.0);
         $this->theta = (double)$theta;
 
         $this->level = (double)$level;

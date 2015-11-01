@@ -8,10 +8,10 @@ use Litipk\TimeSeries\TimeSeriesException;
 
 
 /**
- * Class ExponentialTrendPredictor
+ * Class MultiplicativeTrendPredictor
  * @package Litipk\PhpTimeSeries
  */
-class ExponentialTrendPredictor implements TimeSeriesPredictor
+class MultiplicativeTrendPredictor implements TimeSeriesPredictor
 {
     /** @var  double */
     private $alpha;

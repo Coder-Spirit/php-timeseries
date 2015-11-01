@@ -4,17 +4,16 @@
 namespace Litipk\TimeSeries\Factories;
 
 
-use Litipk\TimeSeries\Predictors\TimeSeriesPredictor;
-use Litipk\TimeSeries\Predictors\ExponentialTrendPredictor;
+use Litipk\TimeSeries\Predictors\MultiplicativeTrendPredictor;
 
 
 /**
  * Class HoltFactory
  * @package Litipk\TimeSeries
  */
-class ExponentialTrendFactory extends BasicExponentialSmoothingFactory
+class MultiplicativeTrendFactory extends BasicExponentialSmoothingFactory
 {
-    /** @var  ExponentialTrendFactory */
+    /** @var  MultiplicativeTrendFactory */
     private static $defaultInstance = null;
 
     /**
@@ -40,10 +39,10 @@ class ExponentialTrendFactory extends BasicExponentialSmoothingFactory
      * @param double $alpha
      * @param double $beta
      * @param double $level
-     * @return TimeSeriesPredictor
+     * @return MultiplicativeTrendPredictor
      */
     protected function getPredictor($alpha, $beta, $level)
     {
-        return new ExponentialTrendPredictor($alpha, $beta, $level);
+        return new MultiplicativeTrendPredictor($alpha, $beta, $level);
     }
 }
