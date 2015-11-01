@@ -1,6 +1,6 @@
 {
     "name": "litipk/php-timeseries",
-    "description": "A Time Series library, ideal to make predictions about temporal data.",
+    "description": "An open source time series forecasting library.",
     "license": "MIT",
     "authors": [
         {
@@ -8,6 +8,11 @@
             "email": "castarco@litipk.com"
         }
     ],
+    "support": {
+        "email": "castarco@litipk.com",
+        "issues": "http://github.com/Litipk/php-timeseries/issues",
+        "source": "http://github.com/Litipk/php-timeseries"
+    },
     "minimum-stability": "stable",
     "require": {},
     "require-dev": {
