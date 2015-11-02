@@ -30,8 +30,8 @@ class HoltPredictor implements TimeSeriesPredictor
      */
     public function __construct($alpha, $beta, $level, $trend = 0.0)
     {
-        $this->alpha = (double)min(1.0, max(0.0, $alpha));
-        $this->beta = (double)min(1.0, max(0.0, $beta));
+        $this->alpha = (double)\min(1.0, \max(0.0, $alpha));
+        $this->beta = (double)\min(1.0, \max(0.0, $beta));
 
         $this->level = (double)$level;
         $this->trend = (double)$trend;
