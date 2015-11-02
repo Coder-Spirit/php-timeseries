@@ -31,7 +31,7 @@ abstract class BasicExponentialSmoothingFactory extends PredictorFactory
      */
     public function train(array $dataPoints)
     {
-        $dataSetSize = count($dataPoints);
+        $dataSetSize = \count($dataPoints);
         if ($dataSetSize < 4) {
             throw new TimeSeriesException('Insufficient number of data points');
         }
@@ -50,7 +50,7 @@ abstract class BasicExponentialSmoothingFactory extends PredictorFactory
                 $candidateError = 0.0;
 
                 for ($k=1; $k<$dataSetSize; $k++) {
-                    $candidateError += pow($candidate->predict()-$dataPoints[$k], 2);
+                    $candidateError += \pow($candidate->predict()-$dataPoints[$k], 2);
                     $candidate->ingestDataPoint($dataPoints[$k]);
                 }
 
