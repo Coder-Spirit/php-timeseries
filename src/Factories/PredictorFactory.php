@@ -17,7 +17,7 @@ abstract class PredictorFactory
      * @param array $dataPoints
      * @return TimeSeriesPredictor
      */
-    public abstract function train(array $dataPoints);
+    public abstract function train(array &$dataPoints);
 
 
     /**

@@ -29,7 +29,7 @@ abstract class BasicExponentialSmoothingFactory extends PredictorFactory
      * @param array $dataPoints
      * @return TimeSeriesPredictor
      */
-    public function train(array $dataPoints)
+    public function train(array &$dataPoints)
     {
         $dataSetSize = \count($dataPoints);
         if ($dataSetSize < 4) {

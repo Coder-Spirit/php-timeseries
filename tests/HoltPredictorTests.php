@@ -39,7 +39,8 @@ class HoltPredictorTests extends \PHPUnit_Framework_TestCase
     {
         $predictor = new \Litipk\TimeSeries\Predictors\HoltPredictor(0.5, 0.75, 1.0, 1.5);
 
-        $predictor->ingestDataArray([3.0]);
+        $dataArray = [3.0];
+        $predictor->ingestDataArray($dataArray);
 
         $this->assertGreaterThan(2.5, $predictor->getLevel());
         $this->assertLessThan(3.0, $predictor->getLevel());
@@ -52,7 +53,8 @@ class HoltPredictorTests extends \PHPUnit_Framework_TestCase
     {
         $predictor = new \Litipk\TimeSeries\Predictors\HoltPredictor(0.5, 0.75, 1.0, 1.5);
 
-        $predictor->ingestDataArray([3.0, 4.0]);
+        $dataArray = [3.0, 4.0];
+        $predictor->ingestDataArray($dataArray);
 
         $this->assertGreaterThan(4.0, $predictor->getLevel());
         $this->assertLessThan(5.0, $predictor->getLevel());

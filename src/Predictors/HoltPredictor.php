@@ -41,7 +41,7 @@ class HoltPredictor implements TimeSeriesPredictor
     /**
      * @param (null|double)[] $dataPoints
      */
-    public function ingestDataArray(array $dataPoints)
+    public function ingestDataArray(array &$dataPoints)
     {
         $this->ingestData($dataPoints);
     }
@@ -52,6 +52,29 @@ class HoltPredictor implements TimeSeriesPredictor
     public function ingestDataTraversable(\Traversable $dataPoints)
     {
         $this->ingestData($dataPoints);
+    }
+
+    /**
+     * @param array $dataPoints
+     * @param \Closure $errF
+     * @return \Generator
+     */
+    public function ingestDataArrayAndPredict(array &$dataPoints, $errF)
+    {
+        $level = &$this->level;
+        $trend = &$this->trend;
+        $alpha = $this->alpha;
+        $beta = $this->beta;
+
+        // We don't use $this->ingestDataPoint for performance reasons
+        foreach ($dataPoints as $dataPoint) {
+            // \pow($candidate->predict()-$dataPoints[$k], 2);
+            yield $errF($level+$trend, $dataPoint);
+
+            $chgFactor = $alpha*($dataPoint - $level - $trend);
+            $level = $level + $trend + $chgFactor;
+            $trend = $trend + $beta*$chgFactor;
+        }
     }
 
     /**
@@ -108,7 +131,7 @@ class HoltPredictor implements TimeSeriesPredictor
     /**
      * @param array|\Traversable $dataPoints
      */
-    private function ingestData($dataPoints)
+    private function ingestData(&$dataPoints)
     {
         // We don't use $this->ingestDataPoint for performance reasons
         foreach ($dataPoints as $dataPoint) {
@@ -116,5 +139,4 @@ class HoltPredictor implements TimeSeriesPredictor
             $this->level = $this->level + $this->trend + $chgFactor;
             $this->trend = $this->trend + $this->beta*$chgFactor;
         }
-    }
-}
+    }}

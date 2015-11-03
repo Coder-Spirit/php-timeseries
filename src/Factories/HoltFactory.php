@@ -45,4 +45,34 @@ class HoltFactory extends BasicExponentialSmoothingFactory
     {
         return new HoltPredictor($alpha, $beta, $level);
     }
+
+    public function fastTrain(array &$dataPoints, $nStepsPerParam = 101)
+    {
+        $minError = +INF;
+        $bestPredictor = null;
+
+        // Local variables to avoid too many indirections
+        $stepSize = 1./($nStepsPerParam-1);
+        $firstLevel = $dataPoints[0];
+
+        $errF = function ($a,$b) { return pow($a-$b, 2); };
+
+        for ($i=0; $i<$nStepsPerParam; $i++) {
+            for ($j=0; $j<$nStepsPerParam; $j++) {
+                $candidate = $this->getPredictor($i*$stepSize, $j*$stepSize, $firstLevel);
+                $candidateError = 0.0;
+
+                foreach($candidate->ingestDataArrayAndPredict($dataPoints, $errF) as $error) {
+                    $candidateError += $error;
+                }
+
+                if ($candidateError < $minError) {
+                    $minError = $candidateError;
+                    $bestPredictor = $candidate;
+                }
+            }
+        }
+
+        return $bestPredictor;
+    }
 }

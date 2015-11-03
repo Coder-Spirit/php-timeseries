@@ -18,7 +18,7 @@ interface TimeSeriesPredictor
     /**
      * @param (null|double)[] $dataPoints
      */
-    public function ingestDataArray(array $dataPoints);
+    public function ingestDataArray(array &$dataPoints);
 
     /**
      * @param \Traversable $dataPoints
